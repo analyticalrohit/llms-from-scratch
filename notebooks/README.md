@@ -22,11 +22,12 @@
 Tokenization is the process of splitting a text into smaller units called tokens. These tokens are the fundamental building blocks an LLM works with. 
 
 Input Sentence: “Every moment is a beginning”
+
 Tokens: [“Every”, “moment”, “is”, “a”, “beginning”] 
 
 This shows how a tokenizer can split a sentence into tokens. After tokenization, each unique token is assigned a unique numerical ID. 
 
-Here’s a simple visual showing word based tokenization: 
+Here’s a simple visual showing tokenization:
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -36,9 +37,9 @@ Here’s a simple visual showing word based tokenization:
 
 ### Token Embeddings
 
-Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” doesn’t tell the machine anything about “Every” is a determiner used to describe a noun. This is where embeddings help.
+Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” doesn’t tell the machine that “Every” is a determiner used to describe a noun. This is where embeddings help.
 
-Embeddings are essentially numerical representations (vectors) of tokens basically a long list of numbers (a vector) that describes its characteristics.
+Token Embeddings are essentially numerical representations (vectors) of tokens basically a long list of numbers (a vector) that describes its characteristics.
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -55,7 +56,9 @@ Imagine the sentences:
 
 The words are the same, but the meaning is entirely different because their positions are different. Our numerical token IDs and token embeddings, by themselves, don’t tell the LLM anything about the order of words.
 
-This is solved with Positional Encodings. Positional encodings are another list of numbers (a vector) added to the token embeddings.
+This is solved with Positional Embeddings.
+
+Positional embeddings are another list of numbers (a vector) added to the token embeddings. These numbers are carefully designed to tell the LLM about the absolute or relative position of each token in the input sequence.
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -75,5 +78,5 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 
 ## Read the full breakdown
 
-- A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings
+- [A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-1)
 - A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture

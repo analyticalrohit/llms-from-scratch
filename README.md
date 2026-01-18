@@ -41,11 +41,11 @@ LLMs work by predicting one word or token at a time. LLMs generate text iterativ
 - [Tokenization](./notebooks/README.md#tokenization)
 - [Token Embeddings](./notebooks/README.md#token-embeddings)
 - [Positional Embeddings](./notebooks/README.md#positional-embeddings)
-- Attention Mechanism
+- Self Attention Mechanism
 - Multi-Head Self Attention
-- Feed forward network
-- Residual connections
-- Layer normalization
+- FeedForward Neural Networks
+- Residual Connections
+- Layer Normalization
 - Transformer Block
 - Cross Entropy Loss
 - Training and Generation
@@ -59,9 +59,9 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 | Tokenization              | [01_tokenization.ipynb](./notebooks/01_tokenization.ipynb) |
 | Token Embeddings          | [02_token_embeddings.ipynb](./notebooks/02_token_embeddings.ipynb) |
 | Positional Embeddings     | [03_positional_embeddings.ipynb](./notebooks/03_positional_embeddings.ipynb) |
-| Attention Mechanism       | TODO |
+| Self Attention Mechanism  | TODO |
 | Multi-Head Self Attention | TODO |
-| Feed Forward Network      | TODO |
+| FeedForward Neural Networks| TODO |
 | Residual Connections      | TODO |
 | Layer Normalization       | TODO |
 | Transformer Block         | TODO |
@@ -78,7 +78,7 @@ If you're installing torch with CUDA support, make sure to use the correct insta
 
 Read the full breakdown and insights in the accompanying blogs.
 
-- A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings
+- [A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-1)
 - A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture
 
 ## Newsletter
@@ -121,5 +121,7 @@ This project is licensed under [MIT License](./LICENSE)
 ---
 
 ⭐️ If you find this repository helpful, please consider giving it a star!
+
+[![Star History Chart](https://api.star-history.com/svg?repos=analyticalrohit/llms-from-scratch&type=date&legend=top-left)](https://www.star-history.com/#analyticalrohit/llms-from-scratch&type=date&legend=top-left)
 
 Keywords: AI, Machine Learning, Deep Learning, PyTorch, Generative AI, LLMs, Transformers
