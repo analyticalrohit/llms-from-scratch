@@ -16,56 +16,6 @@
   </a>
 </p>
 
-
-### Tokenization
-
-Tokenization is the process of splitting a text into smaller units called tokens. These tokens are the fundamental building blocks an LLM works with. 
-
-Input Sentence: “Every moment is a beginning”
-
-Tokens: [“Every”, “moment”, “is”, “a”, “beginning”] 
-
-This shows how a tokenizer can split a sentence into tokens. After tokenization, each unique token is assigned a unique numerical ID. 
-
-Here’s a simple visual showing tokenization:
-
-<p align="center">
-  <a href="https://awesomeneuron.substack.com/">
-    <img src="../assets/llms_tokenization.gif" >
-  </a>
-</p>
-
-### Token Embeddings
-
-Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” doesn’t tell the machine that “Every” is a determiner used to describe a noun. This is where embeddings help.
-
-Token Embeddings are essentially numerical representations (vectors) of tokens basically a long list of numbers (a vector) that describes its characteristics.
-
-<p align="center">
-  <a href="https://awesomeneuron.substack.com/">
-    <img src="../assets/llms_token_embedding.gif" >
-  </a>
-</p>
-
-### Positional Embeddings
-
-Imagine the sentences:
-
-- The dog jumps on the cat.
-- The cat jumps on the dog.
-
-The words are the same, but the meaning is entirely different because their positions are different. Our numerical token IDs and token embeddings, by themselves, don’t tell the LLM anything about the order of words.
-
-This is solved with Positional Embeddings.
-
-Positional embeddings are another list of numbers (a vector) added to the token embeddings. These numbers are carefully designed to tell the LLM about the absolute or relative position of each token in the input sequence.
-
-<p align="center">
-  <a href="https://awesomeneuron.substack.com/">
-    <img src="../assets/llms_position_embedding.gif" >
-  </a>
-</p>
-
 ## Code
 
 Dive into the hands-on examples for each LLM component using interactive Jupyter notebooks.
@@ -75,6 +25,13 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 | Tokenization           | [01_tokenization.ipynb](./notebooks/01_tokenization.ipynb) |
 | Token Embeddings       | [02_token_embeddings.ipynb](./notebooks/02_token_embeddings.ipynb) |
 | Positional Embeddings  | [03_positional_embeddings.ipynb](./notebooks/03_positional_embeddings.ipynb) |
+| Self Attention Mechanism  | [04_self_attention_mechanism.ipynb](./notebooks/04_self_attention_mechanism.ipynb) |
+| Multi-Head Self Attention | [05_multi_head_self_attention.ipynb](./notebooks/05_multi_head_self_attention.ipynb) |
+| FeedForward Neural Networks| [06_feedforward_neural_networks.ipynb](./notebooks/06_feedforward_neural_networks.ipynb) |
+| Residual Connections      | [07_residual_connections.ipynb](./notebooks/07_residual_connections.ipynb) |
+| Layer Normalization       | [08_layer_normalization.ipynb](./notebooks/08_layer_normalization.ipynb) |
+| Transformer Block         | [09_transformer_block.ipynb](./notebooks/09_transformer_block.ipynb) |
+| Mini GPT                   | [10_mini_gpt.ipynb](./notebooks/10_mini_gpt.ipynb) |
 
 ## Read the full breakdown
 
