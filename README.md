@@ -72,7 +72,7 @@ pip install -r requirements.txt
 ```
 If you're installing torch with CUDA support, make sure to use the correct installation command from [PyTorch's official website](https://pytorch.org/get-started/locally/), as some versions require a specific installation method.
 
-### Tokenization
+## Tokenization
 
 Tokenization is the process of splitting a text into smaller units called tokens. These tokens are the fundamental building blocks an LLM works with.
 
@@ -90,7 +90,7 @@ Here’s a simple visual showing tokenization:
   </a>
 </p>
 
-### Token Embeddings
+## Token Embeddings
 
 Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” doesn’t tell the machine that “Every” is a determiner used to describe a noun. This is where embeddings help.
 
@@ -102,7 +102,7 @@ Token Embeddings are essentially numerical representations (vectors) of tokens b
   </a>
 </p>
 
-### Positional Embeddings
+## Positional Embeddings
 
 Imagine the sentences:
 
@@ -121,7 +121,7 @@ Positional embeddings are another list of numbers (a vector) added to the token 
   </a>
 </p>
 
-### Self Attention Mechanism
+## Self Attention Mechanism
 
 Self attention helps a model understand how words relate to each other in a sentence. Instead of reading each word alone, every token can look at the other tokens and decide which ones matter most.
 
@@ -174,7 +174,7 @@ This ensures:
 
 Now each token can only attend to itself and previous tokens. This is the mechanism used in decoder only transformer models like GPT.
 
-### Multi-Head Self Attention
+## Multi-Head Self Attention
 
 Multi-head attention allows a transformer to learn different types of relationships at the same time. Instead of using one single attention mechanism, the model uses multiple attention heads in parallel.
 
@@ -208,7 +208,7 @@ Each head works on dimensions independently. This allows the model to learn rich
 
 The outputs from all heads are combined into one representation. This improves the model's ability to understand language.
 
-### FeedForward Neural Networks
+## FeedForward Neural Networks
 
 Attention allows tokens to communicate with each other and exchange information across the sequence.
 
@@ -226,7 +226,7 @@ A Feedforward Neural Network typically consists of two linear layers with an act
 - Activation function
 - Second linear layer
 
-### Residual Connections
+## Residual Connections
 
 Deep neural networks are difficult to train.
 
@@ -253,7 +253,7 @@ Residual connections help transformers:
 
 They are one of the core building blocks of modern deep learning architectures.
 
-### Layer Normalization
+## Layer Normalization
 
 Neural network activations can become unstable during training. As data passes through many layers, the values can grow too large or become too small. This makes optimization difficult and can slow down learning.
 
@@ -286,7 +286,7 @@ This transforms the features so they have approximately zero mean and unit varia
 
 Layer normalization is applied multiple times inside each transformer block.
 
-### Transformer Block
+## Transformer Block
 
 A transformer block combines:
 
@@ -310,7 +310,7 @@ Dropout is also commonly used after attention and feedforward layers to reduce o
 
 Modern GPT models stack many transformer blocks on top of each other. Each block refines the token representations.
 
-### MiniGPT
+## MiniGPT
 
 `MiniGPT` is a small GPT style language model built using transformer blocks.
 
@@ -325,7 +325,7 @@ It combines:
 The model processes input tokens and predicts the next token in the sequence.
 
 
-#### Parameters
+### Parameters
 
 | Parameter | Description |
 |---|---|
@@ -336,7 +336,7 @@ The model processes input tokens and predicts the next token in the sequence.
 | `hidden_dim` | Hidden size of the feedforward network |
 | `num_layers` | Number of transformer blocks |
 
-#### Overall Flow
+### Overall Flow
 
 ```text
 Input Tokens

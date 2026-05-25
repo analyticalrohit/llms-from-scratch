@@ -31,7 +31,7 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 | Residual Connections      | [07_residual_connections.ipynb](./07_residual_connections.ipynb) |
 | Layer Normalization       | [08_layer_normalization.ipynb](./08_layer_normalization.ipynb) |
 | Transformer Block         | [09_transformer_block.ipynb](./09_transformer_block.ipynb) |
-| Mini GPT                   | [10_mini_gpt.ipynb](./10_mini_gpt.ipynb) |
+| MiniGPT                   | [10_mini_gpt.ipynb](./10_mini_gpt.ipynb) |
 
 ## Read the full breakdown
 
