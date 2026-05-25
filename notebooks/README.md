@@ -22,16 +22,16 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 
 | Topic                  | Code |
 |------------------------|------|
-| Tokenization           | [01_tokenization.ipynb](./notebooks/01_tokenization.ipynb) |
-| Token Embeddings       | [02_token_embeddings.ipynb](./notebooks/02_token_embeddings.ipynb) |
-| Positional Embeddings  | [03_positional_embeddings.ipynb](./notebooks/03_positional_embeddings.ipynb) |
-| Self Attention Mechanism  | [04_self_attention_mechanism.ipynb](./notebooks/04_self_attention_mechanism.ipynb) |
-| Multi-Head Self Attention | [05_multi_head_self_attention.ipynb](./notebooks/05_multi_head_self_attention.ipynb) |
-| FeedForward Neural Networks| [06_feedforward_neural_networks.ipynb](./notebooks/06_feedforward_neural_networks.ipynb) |
-| Residual Connections      | [07_residual_connections.ipynb](./notebooks/07_residual_connections.ipynb) |
-| Layer Normalization       | [08_layer_normalization.ipynb](./notebooks/08_layer_normalization.ipynb) |
-| Transformer Block         | [09_transformer_block.ipynb](./notebooks/09_transformer_block.ipynb) |
-| Mini GPT                   | [10_mini_gpt.ipynb](./notebooks/10_mini_gpt.ipynb) |
+| Tokenization           | [01_tokenization.ipynb](./01_tokenization.ipynb) |
+| Token Embeddings       | [02_token_embeddings.ipynb](./02_token_embeddings.ipynb) |
+| Positional Embeddings  | [03_positional_embeddings.ipynb](./03_positional_embeddings.ipynb) |
+| Self Attention Mechanism  | [04_self_attention_mechanism.ipynb](./04_self_attention_mechanism.ipynb) |
+| Multi-Head Self Attention | [05_multi_head_self_attention.ipynb](./05_multi_head_self_attention.ipynb) |
+| FeedForward Neural Networks| [06_feedforward_neural_networks.ipynb](./06_feedforward_neural_networks.ipynb) |
+| Residual Connections      | [07_residual_connections.ipynb](./07_residual_connections.ipynb) |
+| Layer Normalization       | [08_layer_normalization.ipynb](./08_layer_normalization.ipynb) |
+| Transformer Block         | [09_transformer_block.ipynb](./09_transformer_block.ipynb) |
+| Mini GPT                   | [10_mini_gpt.ipynb](./10_mini_gpt.ipynb) |
 
 ## Read the full breakdown
 
