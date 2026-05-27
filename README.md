@@ -262,21 +262,21 @@ This makes training faster, more stable, and more reliable.
 
 Suppose a token embedding is:
 
-$x = [x_1, x_2, x_3]$
+$$x = [x_1, x_2, x_3]$$
 
 LayerNorm computes:
 
 The mean
 
-$\mu = \frac{1}{n}\sum x_i$
+$$\mu = \frac{1}{n}\sum x_i$$
 
 The variance
 
-$\sigma^2 = \frac{1}{n}\sum (x_i - \mu)^2$
+$$\sigma^2 = \frac{1}{n}\sum (x_i - \mu)^2$$
 
 The normalized output
 
-$\hat{x}_i =\frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$
+$$\hat{x}_i =\frac{x_i - \mu}{\sqrt{\sigma^2 + \epsilon}}$$
 
 This transforms the features so they have approximately zero mean and unit variance.
 
