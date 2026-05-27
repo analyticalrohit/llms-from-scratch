@@ -135,9 +135,7 @@ We compute the dot product between all Queries and Keys to measure how well they
 
 The result is scaled by the square root of the key dimension to keep values stable during training.
 
-$
-\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-$
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
 Each token now contains information gathered from other tokens in the sequence. This is the core idea behind transformers.
 
@@ -153,13 +151,11 @@ Causal self attention solves this using a mask that blocks access to future toke
 
 The mask looks like this:
 
-$
-\begin{bmatrix}
+$$\begin{bmatrix}
 1 & 0 & 0 \\
 1 & 1 & 0 \\
 1 & 1 & 1
-\end{bmatrix}
-$
+\end{bmatrix}$$
 
 A value of:
 
@@ -238,7 +234,7 @@ Residual connections, also called skip connections, help solve this problem. Ins
 
 The original input is added back to the output of a layer:
 
-$\text{Output} = x + \text{Sublayer}(x)$
+$$\text{Output} = x + \text{Sublayer}(x)$$
 
 Transformers use residual connections around both:
 
