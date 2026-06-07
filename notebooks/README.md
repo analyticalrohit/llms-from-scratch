@@ -36,4 +36,4 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 ## Read the full breakdown
 
 - [A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-1)
-- A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture
+- [A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-2)
