@@ -29,7 +29,7 @@ Example: *Every moment is a beginning*
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/llms_birds_eye_view.gif" >
+    <img src="./assets/llms_birds_eye_view.gif" width="75%">
   </a>
 </p>
 
@@ -42,7 +42,7 @@ LLMs work by predicting one word or token at a time. LLMs generate text iterativ
 - [Token Embeddings](#token-embeddings)
 - [Positional Embeddings](#positional-embeddings)
 - [Self Attention Mechanism](#self-attention-mechanism)
-- [Multi-Head Self Attention](#multi-head-self-attention)
+- [Masked Multi-Head Attention](#masked-multi-head-attention)
 - [FeedForward Neural Networks](#feedforward-neural-networks)
 - [Residual Connections](#residual-connections)
 - [Layer Normalization](#layer-normalization)
@@ -59,7 +59,7 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 | Token Embeddings          | [02_token_embeddings.ipynb](./notebooks/02_token_embeddings.ipynb) |
 | Positional Embeddings     | [03_positional_embeddings.ipynb](./notebooks/03_positional_embeddings.ipynb) |
 | Self Attention Mechanism  | [04_self_attention_mechanism.ipynb](./notebooks/04_self_attention_mechanism.ipynb) |
-| Multi-Head Self Attention | [05_multi_head_self_attention.ipynb](./notebooks/05_multi_head_self_attention.ipynb) |
+| Masked Multi-Head Attention | [05_masked_multi_head_attention.ipynb](./notebooks/05_masked_multi_head_attention.ipynb) |
 | FeedForward Neural Networks| [06_feedforward_neural_networks.ipynb](./notebooks/06_feedforward_neural_networks.ipynb) |
 | Residual Connections      | [07_residual_connections.ipynb](./notebooks/07_residual_connections.ipynb) |
 | Layer Normalization       | [08_layer_normalization.ipynb](./notebooks/08_layer_normalization.ipynb) |
@@ -86,7 +86,7 @@ Here’s a simple visual showing tokenization:
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/llms_tokenization.gif" >
+    <img src="./assets/llms_tokenization.gif" width="60%">
   </a>
 </p>
 
@@ -98,7 +98,7 @@ Token Embeddings are essentially numerical representations (vectors) of tokens b
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/llms_token_embedding.gif" >
+    <img src="./assets/llms_token_embedding.gif" width="60%">
   </a>
 </p>
 
@@ -117,13 +117,13 @@ Positional embeddings are another list of numbers (a vector) added to the token 
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/llms_position_embedding.gif" >
+    <img src="./assets/llms_position_embedding.gif" width="60%">
   </a>
 </p>
 
 ## Self Attention Mechanism
 
-Self attention helps a model understand how words relate to each other in a sentence. Instead of reading each word alone, every token can look at the other tokens and decide which ones matter most.
+The Self Attention Mechanism allows the model to understand how words relate to each other. Instead of reading each word in isolation, every token looks at the other tokens and decides which ones matter most.
 
 Take this sentence:
 
@@ -131,36 +131,82 @@ Take this sentence:
 
 To understand the word “beginning”, the model pays attention to words like “moment” and “Every”. This gives context and helps the model capture the idea that each moment can represent a fresh start.
 
-We compute the dot product between all Queries and Keys to measure how well they match.
-
-The result is scaled by the square root of the key dimension to keep values stable during training.
-
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
 
-Each token now contains information gathered from other tokens in the sequence. This is the core idea behind transformers.
+**Step 1**: To achieve this mathematically, the model uses three vectors derived from the input embeddings: Queries (Q), Keys (K), and Values (V). 
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_queries_keys_values.png" width="70%">
+  </a>
+</p>
+
+**Step 2**: We compute the dot product between all Queries and Keys to measure how well they match.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_queries_keys_transpose.png" >
+  </a>
+</p>
+
+**Step 3**: The result is scaled by the square root of the key dimension dk to keep values stable during training.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_scores_scaled.png" >
+  </a>
+</p>
+
+**Step 4**: Apply softmax to obtain attention weights.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_weights.png" >
+  </a>
+</p>
+
+**Step 5**: Calculate context vectors.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_context_vectors.png" >
+  </a>
+</p>
+
+**Complete Self Attention**
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/full_attention.png" width="90%">
+  </a>
+</p>
+
+After attention each token now contains information gathered from other tokens in the sequence. This is the core idea behind transformers.
 
 In standard self attention, each token can attend to all other tokens in the sequence. But in language models, future tokens should not be visible during prediction.
-
-For example, when predicting:
-
-`Every moment is` -> `a`
-
-The model should not look ahead at the future word `beginning`.
 
 Causal self attention solves this using a mask that blocks access to future tokens.
 
 The mask looks like this:
 
 $$\begin{bmatrix}
-1 & 0 & 0 \\
-1 & 1 & 0 \\
-1 & 1 & 1
+1 & 0 & 0 & 0 & 0 \\
+1 & 1 & 0 & 0 & 0 \\
+1 & 1 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1
 \end{bmatrix}$$
-
-A value of:
 
 - `1` means attention is allowed
 - `0` means attention is blocked
+
+This is implemented by masking the blocked positions and replacing their attention scores with “-infinity” before applying the softmax function. After softmax, these positions receive a probability of 0, preventing the model from attending to future tokens.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/attention_weights_causal.png" >
+  </a>
+</p>
 
 This ensures:
 
@@ -170,28 +216,23 @@ This ensures:
 
 Now each token can only attend to itself and previous tokens. This is the mechanism used in decoder only transformer models like GPT.
 
-## Multi-Head Self Attention
+## Masked Multi-Head Attention
 
-Multi-head attention allows a transformer to learn different types of relationships at the same time. Instead of using one single attention mechanism, the model uses multiple attention heads in parallel.
+A single attention mechanism can only learn one type of relationship at a time. To capture grammar, meaning, long-range dependencies, and subject-object relationships simultaneously, the model uses Masked Multi-Head Attention. Multiple attention heads run in parallel, looking at the exact same sentence differently.
 
-Each head looks at the same sentence differently and learns its own pattern of relationships.
+For “Every moment is a beginning,” different heads might focus on different nuances:
 
-Take the sentence:
+Attention Head 1 (Meaning): Connects “moment” ←→ “beginning” to understand the concept of renewal.
 
-“Every moment is a beginning.”
+Attention Head Head 2 (Grammar): Connects “Every” ←→ “moment” to understand that “Every” is describing “moment”.
 
-Different attention heads may focus on different meanings:
+Attention Head Head 3 (Structure): Connects “is”  ←→ “beginning” to anchor the main statement of the sentence.
 
-One head may connect:
-“moment” ↔ “beginning” to understand the idea of renewal or change.
-
-Another head may focus on grammar:
-“Every” ↔ “moment” to understand that “Every” describes “moment”.
-
-Another head may focus on sentence meaning:
-“is” ↔ “beginning” to understand the main statement of the sentence.
-
-A single attention head can learn only one type of relationship at a time. Multiple heads allow the model to capture: grammar, meaning, long range dependencies, subject object relationships, and contextual patterns.
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/masked_multi_head_attention.png" width="90%">
+  </a>
+</p>
 
 How it works:
 
@@ -199,10 +240,6 @@ How it works:
 - Each head performs attention independently.
 - The outputs from all heads are concatenated together.
 - A final linear layer combines the information into one representation.
-
-Each head works on dimensions independently. This allows the model to learn richer and more diverse relationships between words.
-
-The outputs from all heads are combined into one representation. This improves the model's ability to understand language.
 
 ## FeedForward Neural Networks
 
@@ -238,7 +275,7 @@ $$\text{Output} = x + \text{Sublayer}(x)$$
 
 Transformers use residual connections around both:
 
-- Multi-Head Attention
+- Masked Multi-head Attention
 - Feed Forward Networks
 
 Residual connections help transformers:
@@ -286,23 +323,32 @@ Layer normalization is applied multiple times inside each transformer block.
 
 A transformer block combines:
 
-- Multi-head attention
+- Masked multi-head attention
 - Feedforward neural network
 - Residual connections
 - Layer normalization
 
-This is the core building block of GPT models.
+The flow through a Transformer block is:
 
-A Transformer block chains these pieces together in a specific order. In GPT models, which use the "pre norm" architecture, the sequence is:
+- Layer Normalization: Normalizes the input representations to improve training stability.
 
-- LayerNorm
-- Multi Head Attention
-- Residual Add
-- LayerNorm
-- FeedForward
-- Residual Add
+- Masked Multi Head Attention: Allows each token to gather information from itself and previous tokens while preventing access to future tokens.
 
-Dropout is also commonly used after attention and feedforward layers to reduce overfitting and improve generalization.
+- Residual Connection (Add): The original input is added back to the attention output, helping preserve information and improve gradient flow.
+
+- Layer Normalization: Re normalizes the updated representations before further processing.
+
+- Feed Forward Network (FFN): Applies non linear transformations to learn more complex patterns and relationships.
+
+- Residual Connection (Add): The input from before the second Layer Normalization is added to the FFN output, preserving information while incorporating the new transformations.
+
+Note: Dropout is often applied after the attention and feed forward operations during training. This helps reduce overfitting and improves the model’s ability to generalize.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/transformers_block.png" width="75%">
+  </a>
+</p>
 
 Modern GPT models stack many transformer blocks on top of each other. Each block refines the token representations.
 
