@@ -23,7 +23,7 @@ This repository is a hands on guide to building a ChatGPT like LLM in PyTorch. I
 
 ## LLM Architecture
 
-Let us have a birds eye view of the Generative Pretrained Transformer (GPT) like LLM architecture.
+Let us have a bird's eye view of the Generative Pretrained Transformer (GPT) like LLM architecture.
 
 Example: *Every moment is a beginning*
 
@@ -34,7 +34,7 @@ Example: *Every moment is a beginning*
 </p>
 
 
-LLMs work by predicting one word or token at a time. LLMs generate text iteratively. Each predicted word token is appended to the previous input to form the context for the next prediction.
+LLMs work by predicting one token at a time. LLMs generate text iteratively. Each predicted word token is appended to the previous input to form the context for the next prediction.
 
 ## Contents
 
@@ -137,7 +137,7 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/attention_queries_keys_values.png" width="70%">
+    <img src="./assets/attention_queries_keys_values.png" width="80%">
   </a>
 </p>
 
@@ -177,7 +177,7 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/full_attention.png" width="90%">
+    <img src="./assets/full_attention.png" >
   </a>
 </p>
 
@@ -224,13 +224,13 @@ For “Every moment is a beginning,” different heads might focus on different 
 
 Attention Head 1 (Meaning): Connects “moment” ←→ “beginning” to understand the concept of renewal.
 
-Attention Head Head 2 (Grammar): Connects “Every” ←→ “moment” to understand that “Every” is describing “moment”.
+Attention Head 2 (Grammar): Connects “Every” ←→ “moment” to understand that “Every” is describing “moment”.
 
-Attention Head Head 3 (Structure): Connects “is”  ←→ “beginning” to anchor the main statement of the sentence.
+Attention Head 3 (Structure): Connects “is”  ←→ “beginning” to anchor the main statement of the sentence.
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
-    <img src="./assets/masked_multi_head_attention.png" width="90%">
+    <img src="./assets/masked_multi_head_attention.png">
   </a>
 </p>
 
@@ -253,7 +253,7 @@ Attention helps the token "beginning" gather context from words like "moment" an
 
 But after this information is mixed together, each token still needs additional processing to learn more complex patterns. This is the role of the Feed Forward Network, often called the FFN or MLP block.
 
-A Feedforward Neural Network typically consists of two linear layers with an activation function (like GELU) in between,temporarily expanding the hidden dimension (often by 4x) to help the model learn more complex patterns.
+A Feedforward Neural Network typically consists of two linear layers with an activation function (like GELU) in between, temporarily expanding the hidden dimension (often by 4x) to help the model learn more complex patterns.
 
 - Linear layer
 - Activation function
@@ -275,8 +275,8 @@ $$\text{Output} = x + \text{Sublayer}(x)$$
 
 Transformers use residual connections around both:
 
-- Masked Multi-head Attention
-- Feed Forward Networks
+- Masked multi-head attention
+- Feedforward neural networks
 
 Residual connections help transformers:
 
@@ -332,17 +332,17 @@ The flow through a Transformer block is:
 
 - Layer Normalization: Normalizes the input representations to improve training stability.
 
-- Masked Multi Head Attention: Allows each token to gather information from itself and previous tokens while preventing access to future tokens.
+- Masked Multi-Head Attention: Allows each token to gather information from itself and previous tokens while preventing access to future tokens.
 
 - Residual Connection (Add): The original input is added back to the attention output, helping preserve information and improve gradient flow.
 
-- Layer Normalization: Re normalizes the updated representations before further processing.
+- Layer Normalization: Re-normalizes the updated representations before further processing.
 
-- Feed Forward Network (FFN): Applies non linear transformations to learn more complex patterns and relationships.
+- Feedforward Neural Network (FFN): Applies non linear transformations to learn more complex patterns and relationships.
 
 - Residual Connection (Add): The input from before the second Layer Normalization is added to the FFN output, preserving information while incorporating the new transformations.
 
-Note: Dropout is often applied after the attention and feed forward operations during training. This helps reduce overfitting and improves the model’s ability to generalize.
+Note: Dropout is often applied after the attention and feedforward operations during training. This helps reduce overfitting and improves the model’s ability to generalize.
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -375,7 +375,7 @@ The model processes input tokens and predicts the next token in the sequence.
 | `block_size` | Maximum sequence length |
 | `embed_dim` | Size of token embeddings |
 | `num_heads` | Number of attention heads |
-| `hidden_dim` | Hidden size of the feedforward network |
+| `hidden_dim` | Hidden size of the feedforward neural network |
 | `num_layers` | Number of transformer blocks |
 
 ### Overall Flow
@@ -391,9 +391,7 @@ Transformer Blocks
      ↓
 LayerNorm
      ↓
-Linear Layer
-     ↓
-Vocabulary Logits
+Output Layer
 ```
 
 MiniGPT is trained autoregressively. It predicts the next token using previous tokens. This is the core idea behind GPT style language models.
@@ -403,7 +401,7 @@ MiniGPT is trained autoregressively. It predicts the next token using previous t
 Read the full breakdown and insights in the accompanying blogs.
 
 - [A Visual Guide to LLMs (Part 1): Text to Numbers: Tokenization and Embeddings](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-1)
-- A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture
+- [A Visual Guide to LLMs (Part 2): Inside the Transformer Architecture](https://awesomeneuron.substack.com/p/a-visual-guide-to-llms-part-2)
 
 ## Newsletter
 <div style="text-align: left;">
