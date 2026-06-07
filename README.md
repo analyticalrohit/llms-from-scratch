@@ -34,7 +34,7 @@ Example: *Every moment is a beginning*
 </p>
 
 
-LLMs work by predicting one token at a time. LLMs generate text iteratively. Each predicted word token is appended to the previous input to form the context for the next prediction.
+LLMs work by predicting one token at a time. LLMs generate text iteratively. Each predicted token is appended to the previous input to form the context for the next prediction.
 
 ## Contents
 
@@ -43,7 +43,7 @@ LLMs work by predicting one token at a time. LLMs generate text iteratively. Eac
 - [Positional Embeddings](#positional-embeddings)
 - [Self Attention Mechanism](#self-attention-mechanism)
 - [Masked Multi-Head Attention](#masked-multi-head-attention)
-- [FeedForward Neural Networks](#feedforward-neural-networks)
+- [Feedforward Neural Networks](#feedforward-neural-networks)
 - [Residual Connections](#residual-connections)
 - [Layer Normalization](#layer-normalization)
 - [Transformer Block](#transformer-block)
@@ -60,7 +60,7 @@ Dive into the hands-on examples for each LLM component using interactive Jupyter
 | Positional Embeddings     | [03_positional_embeddings.ipynb](./notebooks/03_positional_embeddings.ipynb) |
 | Self Attention Mechanism  | [04_self_attention_mechanism.ipynb](./notebooks/04_self_attention_mechanism.ipynb) |
 | Masked Multi-Head Attention | [05_masked_multi_head_attention.ipynb](./notebooks/05_masked_multi_head_attention.ipynb) |
-| FeedForward Neural Networks| [06_feedforward_neural_networks.ipynb](./notebooks/06_feedforward_neural_networks.ipynb) |
+| Feedforward Neural Networks| [06_feedforward_neural_networks.ipynb](./notebooks/06_feedforward_neural_networks.ipynb) |
 | Residual Connections      | [07_residual_connections.ipynb](./notebooks/07_residual_connections.ipynb) |
 | Layer Normalization       | [08_layer_normalization.ipynb](./notebooks/08_layer_normalization.ipynb) |
 | Transformer Block         | [09_transformer_block.ipynb](./notebooks/09_transformer_block.ipynb) |
@@ -92,7 +92,7 @@ Here’s a simple visual showing tokenization:
 
 ## Token Embeddings
 
-Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” doesn’t tell the machine that “Every” is a determiner used to describe a noun. This is where embeddings help.
+Now we have a list of numbers, but these numbers alone don’t carry any meaning. The ID “15745” for “Every” does not contain information about how the token is used in language. This is where embeddings help.
 
 Token Embeddings are essentially numerical representations (vectors) of tokens basically a long list of numbers (a vector) that describes its characteristics.
 
@@ -181,7 +181,7 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
   </a>
 </p>
 
-After attention each token now contains information gathered from other tokens in the sequence. This is the core idea behind transformers.
+After attention, each token now contains information gathered from other tokens in the sequence. This is the core idea behind transformers.
 
 In standard self attention, each token can attend to all other tokens in the sequence. But in language models, future tokens should not be visible during prediction.
 
@@ -200,7 +200,7 @@ $$\begin{bmatrix}
 - `1` means attention is allowed
 - `0` means attention is blocked
 
-This is implemented by masking the blocked positions and replacing their attention scores with “-infinity” before applying the softmax function. After softmax, these positions receive a probability of 0, preventing the model from attending to future tokens.
+This is implemented by masking the blocked positions and replacing their attention scores with negative infinity before applying the softmax function. After softmax, these positions receive a probability of 0, preventing the model from attending to future tokens.
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -241,7 +241,7 @@ How it works:
 - The outputs from all heads are concatenated together.
 - A final linear layer combines the information into one representation.
 
-## FeedForward Neural Networks
+## Feedforward Neural Networks
 
 Attention allows tokens to communicate with each other and exchange information across the sequence.
 
@@ -355,6 +355,12 @@ Modern GPT models stack many transformer blocks on top of each other. Each block
 ## MiniGPT
 
 `MiniGPT` is a small GPT style language model built using transformer blocks.
+
+<p align="center">
+  <a href="https://awesomeneuron.substack.com/">
+    <img src="./assets/MiniGPT.gif" width="50%">
+  </a>
+</p>
 
 It combines:
 
