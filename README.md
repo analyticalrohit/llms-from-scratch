@@ -131,7 +131,7 @@ Take this sentence:
 
 To understand the word “beginning”, the model pays attention to words like “moment” and “Every”. This gives context and helps the model capture the idea that each moment can represent a fresh start.
 
-$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$
+$$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right).V$$
 
 **Step 1**: To achieve this mathematically, the model uses three vectors derived from the input embeddings: Queries (Q), Keys (K), and Values (V). 
 
@@ -143,6 +143,8 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 
 **Step 2**: We compute the dot product between all Queries and Keys to measure how well they match.
 
+$$\text{Attention Scores} = QK^T$$
+
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
     <img src="./assets/attention_queries_keys_transpose.png" >
@@ -150,6 +152,8 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 </p>
 
 **Step 3**: The result is scaled by the square root of the key dimension dk to keep values stable during training.
+
+$$\text{Scaled Attention Scores} = \frac{QK^T}{\sqrt{d_k}}$$
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -159,6 +163,8 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 
 **Step 4**: Apply softmax to obtain attention weights.
 
+$$\text{Attention Weights} = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)$$
+
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
     <img src="./assets/attention_weights.png" >
@@ -166,6 +172,8 @@ $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)
 </p>
 
 **Step 5**: Calculate context vectors.
+
+$$\text{Context Vectors} = \text{Attention Weights} \cdot V = \text{Attention}(Q, K, V)$$
 
 <p align="center">
   <a href="https://awesomeneuron.substack.com/">
@@ -368,7 +376,7 @@ It combines:
 - Positional embeddings
 - Transformer blocks
 - Layer normalization
-- Output projection layer
+- Output layer
 
 The model processes input tokens and predicts the next token in the sequence.
 
