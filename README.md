@@ -458,6 +458,6 @@ This project is licensed under [MIT License](./LICENSE)
 
 ⭐️ If you find this repository helpful, please consider giving it a star!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=analyticalrohit/llms-from-scratch&type=date&legend=top-left)](https://www.star-history.com/#analyticalrohit/llms-from-scratch&type=date&legend=top-left)
+[![Star History Chart](https://star-history.dera.page/svg?repos=analyticalrohit/llms-from-scratch&type=date&legend=top-left)](https://star-history.dera.page/#analyticalrohit/llms-from-scratch&type=date&legend=top-left)
 
 Keywords: AI, Machine Learning, Deep Learning, PyTorch, Generative AI, LLMs, Transformers
